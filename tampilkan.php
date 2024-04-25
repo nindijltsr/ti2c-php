@@ -1,5 +1,4 @@
 <?php
-// Koneksi ke database dan pengecekan apakah ada data yang akan dihapus
 include "service/database.php";
 
 if (isset($_GET["delete"])) {
@@ -9,7 +8,6 @@ if (isset($_GET["delete"])) {
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        // Data berhasil dihapus, Anda bisa mengarahkan ulang atau memberikan pesan
         $delete_message = "Data dengan ID $id berhasil dihapus.";
     } else {
         $delete_message = "Gagal menghapus data dengan ID $id.";
@@ -26,11 +24,17 @@ $result = $db->query($sql);
     <meta charset="UTF-8">
     <title>Data User</title>
     <style>
-        /* Gaya untuk membuat tabel lebih rapi dan menarik */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('layout/bckgrnd.jpg'); 
+            background-size: cover;
+            font-family: Arial, sans-serif;            
+        }
         table {
-            width: 100%; /* Lebar penuh */
-            border-collapse: collapse; /* Gabungkan batas */
-            margin-bottom: 20px; /* Jarak di bawah tabel */
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-bottom: 20px; 
         }
 
         tr {
@@ -38,7 +42,7 @@ $result = $db->query($sql);
         }
 
         table, th, td {
-            border: 1px solid #ececec; /* Batas tipis */
+            border: 1px solid #ececec; 
         }
 
         h2 {
@@ -46,42 +50,42 @@ $result = $db->query($sql);
         }
 
         th {
-            background-color: black; /* Warna latar belakang untuk header */
-            font-weight: bold; /* Tebalkan teks header */
-            text-align: left; /* Selaraskan teks ke kiri */
+            background-color: black; 
+            font-weight: bold; 
+            text-align: left; 
         }
 
         th, td {
-            padding: 12px; /* Ruang dalam setiap sel */
+            padding: 12px; 
         }
 
         .btn {
             display: inline-block;
-            padding: 10px 20px; /* Ukuran tombol */
-            font-size: 16px; /* Ukuran teks tombol */
+            padding: 10px 20px; 
+            font-size: 16px; 
             text-align: center;
-            text-decoration: none; /* Hilangkan garis bawah */
-            color: white; /* Warna teks */
-            background-color: #007bff; /* Warna biru */
-            border-radius: 5px; /* Sudut membulat */
-            transition: background-color 0.3s; /* Animasi transisi */
+            text-decoration: none; 
+            color: white; 
+            background-color: #007bff; 
+            border-radius: 5px; 
+            transition: background-color 0.3s; 
         }
 
         .btn:hover {
-            background-color: #0056b3; /* Warna lebih gelap saat di-hover */
+            background-color: #0056b3; 
         }
 
         .center {
-            text-align: center; /* Atur teks ke tengah */
+            text-align: center; 
         }
 
         .delete-btn {
-            background-color: #dc3545; /* Warna merah untuk tombol hapus */
+            background-color: #dc3545; 
             color: white;
         }
 
         .delete-btn:hover {
-            background-color: #c82333; /* Warna merah lebih gelap saat di-hover */
+            background-color: #c82333; 
         }
 </style>
 
@@ -106,10 +110,9 @@ $result = $db->query($sql);
                     <th>Tempat Tanggal Lahir</th>
                     <th>Jenis Kelamin</th>
                     <th>Usia</th>
-                    <th>Aksi</th> <!-- Kolom untuk tombol hapus -->
+                    <th>Aksi</th> 
                 </tr>
                 <?php
-                // Loop melalui hasil dan tampilkan data dalam bentuk tabel
                 while ($row = $result->fetch_assoc()): ?>
                     <tr>
                         <td><?= $row["id"] ?></td>
@@ -119,8 +122,7 @@ $result = $db->query($sql);
                         <td><?= $row["gender"] ?></td>
                         <td><?= $row["usia"] ?></td>
                         <td>
-                            <!-- Tombol untuk menghapus data -->
-                            <a class="btn delete-btn" href="?delete=<?= $row["id"] ?>">Hapus</a> <!-- Hapus berdasarkan ID -->
+                            <a class="btn delete-btn" href="?delete=<?= $row["id"] ?>">Hapus</a> 
                         </td>
                     </tr>
                 <?php endwhile; ?>
@@ -129,12 +131,11 @@ $result = $db->query($sql);
             <p style="color: #ececec;">Tidak ada data yang ditemukan.</p>
         <?php endif; ?>
 
-        <!-- Tombol untuk kembali ke halaman utama -->
+        
         <a class="btn" href="index.php">Kembali ke Halaman Utama</a>
     </div>
 
     <?php
-    // Tutup koneksi database
     $db->close();
     ?>
 

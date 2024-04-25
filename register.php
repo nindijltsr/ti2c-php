@@ -39,7 +39,8 @@ if (isset($_POST["register"])) {
         body {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-image: url('layout/bckgrnd.jpg'); 
+            background-size: cover;
             font-family: Arial, sans-serif;
         }
 
@@ -94,19 +95,33 @@ if (isset($_POST["register"])) {
             font-size: 15px;
             padding: 10px;
             text-decoration: none;
-            color: white;
-            background-color: #3498db;
+            background-color: #1679AB;
+            color: #ececec;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #496989; 
+        }
+        
+        .button2 {
+            font-size: 13px;
+            padding: 5px;
+            text-decoration: none;
+            background-color: #A8CD9F;
+            color: black;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
 
-        .button:hover {
-            background-color: #0056b3;
+        .button2:hover {
+            background-color: #58A399;
         }
 
         .button-row {
-            display: flex; /* Membuat flex container */
-            justify-content: space-between; /* Tombol terpisah ke kiri dan kanan */
+            display: flex;
+            justify-content: space-between; 
             margin-top: 5px;
         }
 
@@ -117,18 +132,15 @@ if (isset($_POST["register"])) {
     </style>
 </head>
 <body>
-    <!-- Menambahkan header -->
     <?php include "layout/header.html"; ?>
 
-    <!-- Container untuk form -->
     <div class="container">
         <h3>MASUKKAN DATA</h3>
 
-        <!-- Pesan pendaftaran dan tombol lihat data -->
         <div class="register-message">
             <?= $register_message ?>
             <?php if ($register_message === "Pengisian formulir berhasil, data telah tersimpan.") : ?>
-                <a href="tampilkan.php" class="button">Lihat Data</a>
+                <a href="tampilkan.php" class="button2">Lihat Data</a>
             <?php endif; ?>
         </div>
 
@@ -164,7 +176,7 @@ if (isset($_POST["register"])) {
 
         <!-- Baris tombol simpan dan kembali -->
         <div class="button-row"> 
-                <a href="index.php" class="button">Kembali ke Beranda</a> <!-- Tombol di sebelah kiri -->
+                <a href="index.php" class="button">Kembali ke Beranda</a> 
                 <button type="submit" name="register" class="button" style="font-size: 15px; border-radius: 5px; border:1px solid white; border-color:none; text-decoration: none; transition: background-color 0.3s;">Simpan Data</button>
 
             </div>
@@ -172,7 +184,6 @@ if (isset($_POST["register"])) {
 
     </div>
 
-    <!-- Menambahkan footer -->
     <?php include "layout/footer.html"; ?>
 </body>
 </html>
